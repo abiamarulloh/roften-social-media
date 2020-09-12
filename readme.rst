@@ -1,3 +1,3 @@
 <p align="center">
-  <img src="./img_github/roften.png" alt="Size Limit CLI" width="738">
+  <img src="https://raw.githubusercontent.com/abiamarulloh/school-social-media-by-me/master/img_github/roften.jpg" alt="Size Limit CLI" width="738">
 </p>
