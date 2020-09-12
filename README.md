@@ -11,6 +11,7 @@ How to use this repo ?
 ```sh
 			$config['base_url'] = 'http://localhost/mftp_zip_2020_03_23_07_22_22/';
 ```
+
 3. Change database that is in `application/config/database.php`
 ```sh
 		$db['default'] = array(
