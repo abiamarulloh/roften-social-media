@@ -5,7 +5,6 @@
                 <div class="card-body">
                     <h2>Register</h2>
                     <hr>
-                    
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="fullname">Nama lengkap</label>
@@ -31,7 +30,7 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                        <a href="<?= base_url("auth"); ?>" class="text-decoration-none">Sudah memiliki akun roften ? Masuk sekarang !</a>
+                        <a href="<?= base_url("login"); ?>" class="text-decoration-none">Sudah memiliki akun roften ? Masuk sekarang !</a>
                     </div>
                 </div>
             </div>

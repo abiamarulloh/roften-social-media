@@ -1,39 +1,86 @@
-
-
-
-
-
-<div class="container"> 
-
-    
-    <div class="row my-5">
-    
-    <?php foreach($userAll as $uA) :  ?>
-        <div class="col-md-4 mb-4 mt-5 mb-5 text-center">
-        <!-- diri kita tidak boleh chtan kepada diri sendiri -->
-        <!-- Jika Bukan  profile kita yang diklik maka tampilkan -->
-        <?php if( $user['username'] != $uA['username']  ) : ?>
-            <a href="<?= base_url("user/chatUser/" . $uA['username']);  ?>" class="text-decoration-none text-dark">
-                <div class="card shadow-lg border-0">
-                    <div class="card-body">
-                        <img src="<?= base_url("assets/images/profile/") . $uA['image']; ?>" alt="u" class="img-thumbnail rounded-circle mt-2 mb-4" style="max-width:50px; width:50px; height:50px; max-height:50px;">
-                        <h5 class="card-title"><?= $uA['fullname']; ?></h5>
-                        <small class="badge badge-success">ID : <?= $uA['username']; ?></small>
-                    </div>
+<div class="container">
+    <div class="row my-5 ">
+        <div class="col-md-12 mb-5 mx-auto">
+            <div class="card fixed-top">
+				<div class="card-header navbar-bg text-white ">
+                    <div class="d-flex align-items-center">
+						<a href="<?= base_url($username); ?>" class="btn btn-sm text-white mr-2"> 
+							<i class="fas fa-arrow-left"></i>
+						</a>
+						<a href="<?= base_url($username); ?>" class="text-decoration-none text-white w-100">
+							<img src="<?= base_url("assets/images/profile/") . $friend['image']; ?>" alt="" class="responsive-img rounded-circle float-left" width="50px" height="50px"> 
+							<strong class="text-uppercase">
+								<p class="text-lead  ml-2 d-inline"><?= $username; ?></p> <br>
+								<small class="text-white ml-2 d-inline"><?= $friend['profesi'] ?></small>
+							</strong>
+						</a>
+					</div>
+			
                 </div>
-            </a>
-            <!-- Jika profile kita yang diklik maka hilangkan Link -->
-        <?php else : ?>
-            <div class="card shadow-lg border-0">
-                <div class="card-body">
-                    <img src="<?= base_url("assets/images/profile/") . $uA['image']; ?>" alt="u" class="img-thumbnail rounded-circle mt-2 mb-4" style="max-width:50px; width:50px; height:50px; max-height:50px;">
-                    <h5 class="card-title"><?= $uA['fullname']; ?></h5>
-                    <small class="badge badge-success">ID : <?= $uA['username']; ?></small>
-                </div>
+                <div class="card-body" style="height: 100vh; overflow-y: auto">
+                    <ul class="list-group mb-5">
+                        <?php foreach($chatAll as $c) : ?>
+                            <?php if($c['message']) : ?> 
+								<?php if($c['sender_id'] && $c['receiver_id'] ) : ?>
+								
+									<?php if($c['sender_id'] == $user['id'] ) : ?>
+										<li class="right-chat ml-auto list-group-item border-0">
+											<div>
+												<span>
+													<i class="fas fa-check ml-2 float-right"></i>
+												</span>
+												<span>
+													<?= $c['message']; ?>
+													<span class="date-chat"><?= date("h.i", $c['date_created']); ?></span>
+												</span>
+											</div>
+											<div>
+												<img 
+													src="<?= base_url("assets/images/profile/") . $user['image']; ?>" 
+													alt="<?= $user['image']; ?>"
+												>
+											</div>
+									<?php else : ?>
+										<li class="left-chat mr-auto list-group-item border-0">
+											<div>
+												<a href="<?= base_url($friend['username']) ?>">
+													<img 
+														src="<?= base_url("assets/images/profile/") . $friend['image']; ?>" 
+														alt="<?= $user['image']; ?>"
+													>
+												</a>
+											</div>
+											<div>
+												<span>
+													<i class="fas fa-check ml-2 float-right"></i>
+												</span>
+												<span>
+													<?= $c['message']; ?>
+													<span class="date-chat"><?= date("h.i", $c['date_created']); ?></span>
+												</span>
+											</div>
+											
+									<?php endif; ?>
+									</li>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                   
+					<div class="card-footer mb-5 ">
+						<form action="" method="post">
+								<input type="text" hidden name="sender_id" value="<?= $user['id']; ?>">
+								<input type="text"  hidden name="receiver_id" value="<?= $friend['id']; ?>">
+							<div class="form-group">
+								<label for="messageUser">Pesan</label>
+								<textarea class="form-control" name="messageUser" id="messageUser"></textarea>
+								<?= form_error("messageUser", "<small class='text-danger'>", "</small>") ?>
+							</div>
+							<button type="submit" class="btn btn-primary mb-5">Kirim Pesan <i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
+				</div>
             </div>
-        <?php endif ; ?>
-    </div>
-    <?php endforeach ?>
-       
+        </div>
     </div>
 </div>

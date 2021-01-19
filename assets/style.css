@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@200;400&display=swap');
+
+
+* { 
+	font-family: 'Sarabun', sans-serif;
+}
+
+.navbar-bg, .btn-primary {
+	background-color: #004e9c;
+}
+
+.dropdown-left {
+	margin-left: -100px;
+}
+
+.card-body.fit-body-post img {
+    max-width: 100%;
+}
+
+.card-body.fit-body-post {
+   border-bottom: 1px solid grey;
+   background:rgba(255, 255, 255, 0.87);
+}
+
+.post-profile-header {
+	width: auto;
+	display: flex;
+	align-items: center;
+	background-color: #004e9c;
+	padding: 10px;
+	border-radius: 10px;
+	color: rgb(255, 255, 255);
+}
+
+.post-profile-header div:nth-child(2) {
+	margin-left: 10px;
+}
+
+.right-chat div:nth-child(2) img, .left-chat div:nth-child(1) img{
+	margin-bottom: 20px;
+	border-radius: 100px;
+	width: 50px;
+}
+
+.right-chat div:nth-child(1), .left-chat div:nth-child(2) {
+	height: 50px;
+	background-color: #ecf0f1;
+	border-radius: 100px;
+	display: block;
+	padding: 10px;
+	margin-left: 10px;
+	color: black;
+}
+
+.right-chat{
+	display: flex;
+	float: left;
+}
+
+.left-chat {
+	display: flex;
+	float: right;
+}
+
+.date-chat {
+	font-size: 10px;
+	margin-left: 20px
+}
+

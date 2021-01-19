@@ -15,16 +15,15 @@
           <?php else : ?>
             <li class="nav-item">
           <?php endif; ?>
-            <a class="nav-link" href="<?= base_url("auth"); ?>">Login</a>
+            <a class="nav-link" href="<?= base_url("login"); ?>">Login</a>
           </li>
-
 
           <?php if($title == "Register") : ?>
             <li class="nav-item active">
           <?php else : ?>
             <li class="nav-item">
           <?php endif; ?>
-            <a class="nav-link" href="<?= base_url("auth/register"); ?>">Register</a>
+            <a class="nav-link" href="<?= base_url("register"); ?>">Register</a>
           </li>
       </ul>
     </div>

@@ -11,7 +11,7 @@ class Auth extends CI_Controller {
 	public function index()
 	{
 		if($this->session->has_userdata('email') == true){
-            redirect('user');
+            redirect('');
         }
 		// Membuat Rules
 		$this->form_validation->set_rules('email', 'email', 'required|trim|valid_email',[
@@ -37,7 +37,7 @@ class Auth extends CI_Controller {
 	// Login Fungsi
 	private function _login(){
 		if($this->session->has_userdata('email') == true){
-            redirect('user');
+            redirect('');
         }
 		$email 		= $this->input->post("email");
 		$password 	= $this->input->post("password");
@@ -47,10 +47,8 @@ class Auth extends CI_Controller {
 
 		// Jika email tersedia
 		if($user['email']){
-
 			// Jika emailnya telah diverrifikasi
 			if($user['is_actived'] == 1){
-
 				// Cek password
 				if(password_verify($password, $user['password'])){
 					$data = [
@@ -58,8 +56,7 @@ class Auth extends CI_Controller {
 						'role_id' 	=> $user['role_id'],
 					];
 					$this->session->set_userdata($data);
-					redirect("user");
-
+					redirect("");
 				}else{
 					//Jika password salah
 					$this->session->set_flashdata("auth", '
@@ -70,10 +67,8 @@ class Auth extends CI_Controller {
 						</button>
 					</div>
 					');
-					redirect("auth");
+					redirect("login");
 				}
-
-
 			}else{
 				// Jika email belum diverifikasi
 				$this->session->set_flashdata("auth", '
@@ -84,7 +79,7 @@ class Auth extends CI_Controller {
 					</button>
 				</div>
 				');
-				redirect("auth");
+				redirect("login");
 			}
 
 		}else {
@@ -97,7 +92,7 @@ class Auth extends CI_Controller {
 				</button>
 			</div>
 		 	');
-		 	redirect("auth");
+		 	redirect("login");
 		}
 
 	}
@@ -105,7 +100,7 @@ class Auth extends CI_Controller {
 	public function register()
 	{	
 	    if($this->session->has_userdata('email') == true){
-                redirect('user');
+                redirect('');
             }
 		// Membuat Rules
 		$this->form_validation->set_rules('fullname', 'fullname', 'required|trim',[
@@ -155,7 +150,7 @@ class Auth extends CI_Controller {
 					</button>
 				</div>
 			 ');
-			 redirect("auth");
+			 redirect("login");
 		}
 
 
@@ -174,7 +169,7 @@ class Auth extends CI_Controller {
 				</button>
 			</div>
 		');
-		redirect("auth");
+		redirect("login");
 	}
 
 	

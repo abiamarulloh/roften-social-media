@@ -28,11 +28,11 @@
                 <!-- Setting My Profile  -->
                     <h3>Detail </h3>
                     <hr>
-                    <?= form_open_multipart( base_url("user/myprofile") ); ?>
+                    <?= form_open_multipart(); ?>
                         <input type="text" name="id" hidden value="<?= $user['id']; ?>">
                         <div class="form-group">
                             <label for="image">Foto Profile</label>
-                            <input type="file" id="image" name="image" class="p-1 mb-2">
+                            <input type="file" accept="image/png, image/jpeg" id="image" name="image" class="p-1 mb-2">
                         </div>
                         <div class="form-group">
                             <label for="fullname">Nama Lengkap</label>
@@ -50,28 +50,27 @@
                         <div class="form-group">
                             <label for="profesi">Profesi</label>
                             <input type="text" class="form-control" name="profesi" value="<?= $user['profesi']; ?>" id="profesi">
-                            <?= form_error("profesi",'<small class="text-danger">' , '</small>' ) ?>
                         </div>
                         <div class="form-group">
                             <label for="sekolah">Sekolah</label>
                             <input type="text" class="form-control" name="sekolah" value="<?= $user['sekolah']; ?>" id="sekolah">
-                            <?= form_error("sekolah",'<small class="text-danger">' , '</small>' ) ?>
                         </div>
                         <div class="form-group">
                             <label for="bio">Bio</label>
                             <textarea class="form-control" id="bio" name="bio"rows="3"><?= $user['bio']; ?></textarea>
-                            <?= form_error("bio",'<small class="text-danger">' , '</small>' ) ?>
                         </div>
-                        <button type="submit" class="btn btn-block btn-sm btn-primary">Simpan</button>
+						<div class="form-group d-flex justify-content-between">
+							<button type="submit" class="btn btn-primary">Save</button>
+							<a href="<?= base_url($username) ?>" class="btn btn-secondary">Back</a>
+						</div>
                     </form>
-                
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <!-- Setting Security -->
                     <h3>Security</h3>
                     <p>Ganti password Roften.</p>
                     <hr>
-                    <form action="<?= base_url("user/security") ?>" method="post">
+                    <form action="<?= base_url("setting/security"); ?>" method="post">
                         <input type="text" name="id" hidden value="<?= $user['id']; ?>">
                         <div class="form-group">
                             <label for="currentPassword">Password Sekarang</label>
@@ -93,7 +92,10 @@
                             <small class="text-muted">*Konfirmasi password baru*</small> <br>
                             <?= form_error("confirmpassword",'<small class="text-danger">' , '</small>' ) ?>
                         </div>
-                        <button type="submit" class="btn btn-block btn-sm btn-primary">Simpan</button>
+						<div class="form-group d-flex justify-content-between">
+							<button type="submit" class="btn btn-primary">Save</button>
+							<a href="<?= base_url($username) ?>" class="btn btn-secondary">Back</a>
+						</div>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -101,7 +103,7 @@
                     <h3>Media Sosial </h3>
                     <p>Membantu temanmu mengetahui siapa dirimu dengan menambahkan alamat media sosial dibawah ini.</p>
                     <hr>
-                    <form action="<?= base_url("user/medsos") ?>" method="post">
+                    <form action="<?= base_url("setting/medsos") ?>" method="post">
                         <input type="text" name="id" hidden value="<?= $user['id']; ?>">
                         <div class="form-group">
                             <label for="whatsapp"> <i class="fab fa-fw fa-whatsapp"></i> Whatsapp</label>
@@ -119,7 +121,10 @@
                             <input type="text" class="form-control" name="facebook"  value="<?= $user['facebook']; ?>" id="facebook">
                             <small class="text-muted">Example : beehon06 </small>
                         </div>
-                        <button type="submit" class="btn btn-block btn-sm btn-primary">Simpan</button>
+						<div class="form-group d-flex justify-content-between">
+							<button type="submit" class="btn btn-primary">Save</button>
+							<a href="<?= base_url($username) ?>" class="btn btn-secondary">Back</a>
+						</div>
                     </form>
                 
                 </div>
