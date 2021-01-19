@@ -5,6 +5,20 @@
 	font-family: 'Sarabun', sans-serif;
 }
 
+body {
+	background: rgb(2,0,36);
+	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(139,0,104,1) 54%, rgba(57,0,255,1) 100%);
+}
+
+.navbar {
+	background: rgb(2,0,36);
+	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(125,0,94,0.9205883036808473) 54%, rgba(57,0,255,1) 100%);
+	-webkit-box-shadow: 2px 11px 25px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 11px 25px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 11px 25px 0px rgba(0,0,0,0.75);
+}
+
+
 .navbar-bg, .btn-primary {
 	background-color: #004e9c;
 }

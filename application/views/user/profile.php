@@ -85,7 +85,7 @@
 				</form>
 				
 				<?php foreach ($user_posts as $user_post) : ?>
-				<div class="card border-0">
+				<div class="card border-0 mb-5">
 					<div class="card-body fit-body-post">
 						<h1 class="display-4 text-center m-3"><strong><?= $user_post['title'] ?></strong></h1>
 						<small class="d-block text-center m-3 my-2"><?= date("l, d F Y h:i:j", $user_post['post_create']) ?></small>

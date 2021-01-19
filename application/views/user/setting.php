@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container text-white">
     <div class="row">
         <div class="col-md-6 mx-auto mt-5 mb-5" style="padding-bottom:60px; padding-top:60px">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -60,8 +60,8 @@
                             <textarea class="form-control" id="bio" name="bio"rows="3"><?= $user['bio']; ?></textarea>
                         </div>
 						<div class="form-group d-flex justify-content-between">
+							<a href="<?= base_url($username) ?>" class="btn bg-white"><i class="fas fa-arrow-left"></i></a>
 							<button type="submit" class="btn btn-primary">Save</button>
-							<a href="<?= base_url($username) ?>" class="btn btn-secondary">Back</a>
 						</div>
                     </form>
                 </div>
