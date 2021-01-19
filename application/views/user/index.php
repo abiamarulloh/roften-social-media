@@ -28,9 +28,45 @@
 					</a>
 					<p class="card-text"><?= htmlspecialchars_decode($user_post["body"]); ?></p>
 				</div>
+				<div class="card-footer border-0 mb-5">
+					<?php $this->session->flashdata("message"); ?>
+					<?= form_open(); ?>
+						<input type="text" name="post_id" hidden value="<?= $user_post['post_id']; ?>">
+						<input type="text" name="user_id" hidden value="<?= $user['id']; ?>" >
+						<div class="form-group">
+							<label for="comment_<?= $user_post['post_id']; ?>">Komentar</label>
+							<input type="text" class="form-control" name="comment" id="comment_<?= $user_post['post_id']; ?>" aria-describedby="comment_<?= $user_post['post_id']; ?>Help">
+							<small id="comment_<?= $user_post['post_id']; ?>Help" class="form-text text-muted">silahkan berkomentar dengan bijak</small>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+					<hr>
+					<?php foreach($user_comments as $user_comment) : ?>
+						<?php if($user_comment['post_id'] == $user_post['post_id']) : ?>
+						<div class="row my-3">
+							<div class="col-md-12">
+								<div class="d-flex align-items-center mb-3">
+									<div>
+										<img src="<?= base_url("assets/images/profile/") .  $user_comment['image'] ?>" width="50px" alt="">
+									</div>
+									<div class="ml-3">
+										<span class="d-block"><?= $user_comment['fullname']; ?></span>
+										<span  class="d-block"><a href="<?= base_url($user_comment['username']); ?>" class="text-dark"><?= $user_comment['username']; ?></a></span>
+									</div>
+									<div class="ml-4">
+										<a href="<?= base_url("user/comment/delete/") . $user_comment['comment_id']?>" onclick="return confirm('Yakin ingin hapus ? ')" class="text-dark"><i class="fas fa-fw fa-trash"></i></a>
+									</div>
+								</div>
+								<div>
+									<?= $user_comment['comment']; ?>
+								</div>
+							</div>
+						</div>
+						<?php endif; ?>
+					<?php endforeach; ?>			
+				</div>
 			</div>
 			<?php endforeach; ?>
 		</div>
-
 	</div>
 </div>

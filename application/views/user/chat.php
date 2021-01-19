@@ -15,7 +15,6 @@
 							</strong>
 						</a>
 					</div>
-			
                 </div>
                 <div class="card-body" style="height: 100vh; overflow-y: auto">
                     <ul class="list-group mb-5">
@@ -25,13 +24,14 @@
 								
 									<?php if($c['sender_id'] == $user['id'] ) : ?>
 										<li class="right-chat ml-auto list-group-item border-0">
-											<div>
-												<span>
-													<i class="fas fa-check ml-2 float-right"></i>
-												</span>
+										
+											<div class="text-break mr-2">
 												<span>
 													<?= $c['message']; ?>
-													<span class="date-chat"><?= date("h.i", $c['date_created']); ?></span>
+												</span>
+												<span class="float-left mt-5 d-flex align-items-center">
+													<i class="fas fa-check ml-2 text-primary float-left"></i>
+													<span class="date-chat-left m-2"><?= date("h.i", $c['date_created']); ?></span>
 												</span>
 											</div>
 											<div>
@@ -40,24 +40,26 @@
 													alt="<?= $user['image']; ?>"
 												>
 											</div>
+										
 									<?php else : ?>
 										<li class="left-chat mr-auto list-group-item border-0">
 											<div>
 												<a href="<?= base_url($friend['username']) ?>">
 													<img 
 														src="<?= base_url("assets/images/profile/") . $friend['image']; ?>" 
-														alt="<?= $user['image']; ?>"
+														alt="<?= $friend['image']; ?>"
 													>
 												</a>
 											</div>
-											<div>
-												<span>
-													<i class="fas fa-check ml-2 float-right"></i>
-												</span>
+											<div class="text-break ml-2">
 												<span>
 													<?= $c['message']; ?>
-													<span class="date-chat"><?= date("h.i", $c['date_created']); ?></span>
 												</span>
+												<span class="float-right mt-5 d-flex align-items-center">
+													<span class="date-chat-left m-2"><?= date("h.i", $c['date_created']); ?></span>
+													<i class="fas fa-check mr-2 text-primary float-right"></i>
+												</span>
+											
 											</div>
 											
 									<?php endif; ?>

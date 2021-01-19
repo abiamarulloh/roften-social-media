@@ -18,11 +18,35 @@ class User extends CI_Controller {
 		$username = explode("@", $data['user']['email']); 
 		$username = $username[0];
 		$data['username'] = $username;
-		$data['title'] = "Roften - Home";
-		$this->load->view('layouts/header',$data);
-		$this->load->view('layouts/navbar',$data);
-		$this->load->view('user/index', $data);
-		$this->load->view('layouts/footer');
+
+		$data['user_comments'] = $this->User_model->get_user_comments();
+
+		$this->form_validation->set_rules('comment', 'Comment', 'required');
+
+		if($this->form_validation->run() == false) { 
+			$data['title'] = "Roften - Home";
+			$this->load->view('layouts/header',$data);
+			$this->load->view('layouts/navbar',$data);
+			$this->load->view('user/index', $data);
+			$this->load->view('layouts/footer');
+		}else {
+			$data = [
+				"post_id"		=> htmlspecialchars($this->input->post("post_id", true)),
+				"user_id"		=> htmlspecialchars($this->input->post("user_id", true)),
+				"comment"		=> htmlspecialchars($this->input->post("comment", true)),
+				'create_at' 	=> time()
+			];
+			$this->db->insert("comment",$data);
+			$this->session->set_flashdata("message", '
+					<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+						<strong> Comment berhasil ditambahkan. </strong>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					');
+			redirect("");
+		}
 		
 	}
 
@@ -152,6 +176,11 @@ class User extends CI_Controller {
 			redirect("user/chat/" . $username );
 		}
 
+	}
+
+	public function delete_comment($id) {
+		$this->db->delete("comment", ['id' => $id]);
+		redirect("");
 	}
 	
 }

@@ -52,16 +52,17 @@ body {
 
 .right-chat div:nth-child(2) img, .left-chat div:nth-child(1) img{
 	margin-bottom: 20px;
-	border-radius: 100px;
+	border-radius: 10px;
 	width: 50px;
 }
 
 .right-chat div:nth-child(1), .left-chat div:nth-child(2) {
-	height: 50px;
 	background-color: #ecf0f1;
-	border-radius: 100px;
-	display: block;
-	padding: 10px;
+	border-radius: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	margin-left: 10px;
 	color: black;
 }
@@ -71,13 +72,19 @@ body {
 	float: left;
 }
 
+
 .left-chat {
 	display: flex;
 	float: right;
 }
 
-.date-chat {
+.date-chat-left {
 	font-size: 10px;
-	margin-left: 20px
+	margin-left: 0;
+}
+
+.date-chat-right {
+	font-size: 10px;
+	margin-right: 0;
 }
 
