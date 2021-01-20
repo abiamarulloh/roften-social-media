@@ -21,7 +21,7 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                        <a href="<?= base_url("register"); ?>" class="text-decoration-none">Belum memiliki akun roften ? daftar sekarang !</a>
+                        <a href="<?= base_url("register"); ?>" class="text-decoration-none">don't have an account? register now!</a>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    <!-- Favicon -->
+		<link rel="shortcut icon" href="<?= base_url();  ?>assets/images/roften-logo.png" type="image/x-icon">
+
+		<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url("assets/bootstrap4/css/bootstrap.min.css"); ?> ">
 
     <!-- Font Awesome CSS  -->
@@ -14,7 +17,8 @@
 
 		<script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
 		
-		<link rel="stylesheet" href="<?= base_url() ?>/assets/style.css">
+		<link rel="stylesheet" href="<?= base_url() ?>assets/style.css">
+		
 		<title><?= $title; ?></title>
   </head>
   <body>

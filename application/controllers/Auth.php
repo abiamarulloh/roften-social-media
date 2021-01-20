@@ -14,13 +14,8 @@ class Auth extends CI_Controller {
             redirect('');
         }
 		// Membuat Rules
-		$this->form_validation->set_rules('email', 'email', 'required|trim|valid_email',[
-			'required' => "Email address harus dilengkapi dengan benar"
-		]);
-		$this->form_validation->set_rules('password', 'password', 'required|trim',[
-			'required' => "Password harus dilengkapi dengan benar",
-		]);
-	
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if($this->form_validation->run() == false) {
 			$data['title'] = "Login";
@@ -61,7 +56,7 @@ class Auth extends CI_Controller {
 					//Jika password salah
 					$this->session->set_flashdata("auth", '
 					<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-						<strong> Maaf kawan, Password yang kamu masukkan salah, silahkan periksa kembali ! </strong>
+						<strong> Sorry, your email / password is invalid, please check again! </strong>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -73,7 +68,7 @@ class Auth extends CI_Controller {
 				// Jika email belum diverifikasi
 				$this->session->set_flashdata("auth", '
 				<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-					<strong> Maaf kawan, anda belum Memverifikasi email, silahkan buka email kamu ! </strong>
+					<strong>sorry, your account has not been verified, please check email! </strong>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					</button>
@@ -86,7 +81,7 @@ class Auth extends CI_Controller {
 			// Jika tidak ada email yang terdaftar
 			$this->session->set_flashdata("auth", '
 			<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-				<strong> Maaf kawan, anda belum terdaftar di roften. </strong>
+				<strong> sorry, you are not registered with roften </strong>
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
@@ -103,21 +98,10 @@ class Auth extends CI_Controller {
                 redirect('');
             }
 		// Membuat Rules
-		$this->form_validation->set_rules('fullname', 'fullname', 'required|trim',[
-			'required' => "Nama lengkap harus dilengkapi dengan benar"
-		]);
-		$this->form_validation->set_rules('email', 'email', 'required|trim|valid_email|is_unique[user.email]',[
-			'required' => "Email address harus dilengkapi dengan benar",
-			'is_unique' => "Email yang anda pakai telah terdaftar diroften"
-		]);
-		$this->form_validation->set_rules('password', 'password', 'required|min_length[6]',[
-			'required' => "Password harus dilengkapi dengan benar",
-			'min_length' => "Password tidak boleh kurang dari 6 karakter"
-		]);
-		$this->form_validation->set_rules('confirmpassword', 'confirmpassword', 'required|matches[password]',[
-			'required' => "Confirm Password harus dilengkapi dengan benar",
-			'matches' => "Confirm password tidak sesuai"
-		]);
+		$this->form_validation->set_rules('fullname', 'Fullname', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[user.email]');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+		$this->form_validation->set_rules('confirmpassword', 'Confirm Password', 'required|matches[password]');
 
 		if($this->form_validation->run() == false) {
 			$data['title'] = "Register";
@@ -144,7 +128,7 @@ class Auth extends CI_Controller {
 			 $this->Auth_model->insertUser($data);
 			 $this->session->set_flashdata("auth", '
 				<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-					<strong> Selamat anda berhasil mendaftar di roften, silahkah login ! </strong>
+					<strong> congratulations, your account registration was successful, please login! </strong>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					</button>
@@ -163,7 +147,7 @@ class Auth extends CI_Controller {
 
 		$this->session->set_flashdata("auth", '
 		<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-			<strong> Kamu telah Logout dari roften.  </strong>
+			<strong> You have logged out of roften  </strong>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 				</button>

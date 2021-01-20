@@ -88,3 +88,10 @@ body {
 	margin-right: 0;
 }
 
+.show-comment-link {
+	cursor: pointer;
+}
+
+.show-comment-link:hover {
+	text-decoration: underline;
+}

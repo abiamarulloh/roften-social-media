@@ -21,8 +21,6 @@ class User extends CI_Controller {
 
 		$data['user_comments'] = $this->User_model->get_user_comments();
 
-		$this->form_validation->set_rules('comment', 'Comment', 'required');
-
 		if($this->form_validation->run() == false) { 
 			$data['title'] = "Roften - Home";
 			$this->load->view('layouts/header',$data);

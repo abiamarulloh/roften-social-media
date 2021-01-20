@@ -30,7 +30,7 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                        <a href="<?= base_url("login"); ?>" class="text-decoration-none">Sudah memiliki akun roften ? Masuk sekarang !</a>
+                        <a href="<?= base_url("login"); ?>" class="text-decoration-none">already have an account? login now !</a>
                     </div>
                 </div>
             </div>
