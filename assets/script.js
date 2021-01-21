@@ -13,12 +13,15 @@ ClassicEditor
 .catch( error => {});
 
 
+
 function seeComment(e, post_id, user_id) {
 	$(`#${e}`).toggleClass("d-none");
 	postComment(user_id, post_id);
 	deleteComment(post_id);
+	window.setInterval(() => {
+		getComment(post_id)
+	}, 2000);
 }
-
 
 // Get Comment
 function getComment(post_id) {

@@ -6,15 +6,15 @@
 }
 
 body {
-	background: rgb(2,0,36);
-	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(139,0,104,1) 54%, rgba(57,0,255,1) 100%);
+	background: #4CA1AF;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .navbar {
-	background: rgb(2,0,36);
-	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(125,0,94,0.9205883036808473) 54%, rgba(57,0,255,1) 100%);
-	-webkit-box-shadow: 2px 11px 25px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 2px 11px 25px 0px rgba(0,0,0,0.75);
+	background: #4CA1AF;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #78b8c4, #3699a8);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #78b8c4, #3699a8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	box-shadow: 2px 11px 25px 0px rgba(0,0,0,0.75);
 }
 
@@ -36,11 +36,17 @@ body {
    background:rgba(255, 255, 255, 0.87);
 }
 
+.card-body.fit-body-post a {
+	text-decoration: none;
+}
+
 .post-profile-header {
 	width: auto;
 	display: flex;
 	align-items: center;
-	background-color: #004e9c;
+	background: #4DA0B0;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #D39D38, #4DA0B0);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #D39D38, #4DA0B0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	padding: 10px;
 	border-radius: 10px;
 	color: rgb(255, 255, 255);
@@ -99,5 +105,4 @@ body {
 .btn-delete {
 	border: 0;
 	outline-style: none;
-	width: 20px;
 }
