@@ -20,13 +20,18 @@ class User extends CI_Controller {
 		$data['username'] = $username;
 
 		$data['user_comments'] = $this->User_model->get_user_comments();
+		$data['title'] = "Roften - Home";
+		$this->load->view('layouts/header',$data);
+		$this->load->view('layouts/navbar',$data);
+		$this->load->view('user/index', $data);
+		$this->load->view('layouts/footer');
+		
+	}
 
+	public function comment() {
+		$this->form_validation->set_rules('comment', 'comment', 'required');
 		if($this->form_validation->run() == false) { 
-			$data['title'] = "Roften - Home";
-			$this->load->view('layouts/header',$data);
-			$this->load->view('layouts/navbar',$data);
-			$this->load->view('user/index', $data);
-			$this->load->view('layouts/footer');
+			echo validation_errors();
 		}else {
 			$data = [
 				"post_id"		=> htmlspecialchars($this->input->post("post_id", true)),
@@ -34,18 +39,44 @@ class User extends CI_Controller {
 				"comment"		=> htmlspecialchars($this->input->post("comment", true)),
 				'create_at' 	=> time()
 			];
-			$this->db->insert("comment",$data);
-			$this->session->set_flashdata("message", '
-					<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-						<strong> Comment berhasil ditambahkan. </strong>
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					');
-			redirect("");
+			$result = $this->db->insert("comment", $data);
+			if($result) {
+				$alert = "Comment successfull add";
+				echo $alert;
+			}
 		}
-		
+	}
+
+
+	public function commentList($current_post_id) 
+	{
+		$user = $this->db->get_where("user", ["email" => $this->session->userdata("email")])->row_array();
+		$user_comments = $this->User_model->get_user_comment_by_post($current_post_id);
+		foreach($user_comments as $user_comment) :
+				$conditionAccess = $user_comment["username"] == $user["username"] ? "" : "d-none";
+				echo '
+					<div class="row my-3">
+						<div class="col-md-12">
+							<div class="d-flex align-items-center mb-3">
+								<div>
+									<img src="'. base_url("assets/images/profile/") .  $user_comment['image']  .'" width="50px" alt="">
+								</div>
+								<div class="ml-3">
+									<span class="d-block">'. $user_comment['fullname'] .'</span>
+									<span class="d-block"><a href="'. base_url($user_comment['username']) .'" class="text-dark">'. $user_comment['username'] .'</a></span>
+								</div>
+								<div class="' . 'm-4 ' . $conditionAccess . ' delete-wrap' . '">
+									<button type="submit" data-id="' . $user_comment['comment_id'] .  '"
+									class="text-dark btn-delete" ><i class="fas fa-fw fa-trash"></i></button>
+								</div>
+							</div>
+							<div>
+								'. $user_comment['comment'] .'
+							</div>
+						</div>
+					</div>
+				';
+		endforeach;
 	}
 
 	public function friend()
@@ -70,6 +101,8 @@ class User extends CI_Controller {
 
 		// Get Post
 		$data['user_posts'] = $this->User_model->get_user_post($username);
+
+		$data['user_comments'] = $this->User_model->get_user_comments();
 
 		$this->form_validation->set_rules('title', 'title', 'required');
 		$this->form_validation->set_rules('body', 'body', 'required');
@@ -176,9 +209,9 @@ class User extends CI_Controller {
 
 	}
 
-	public function delete_comment($id) {
-		$this->db->delete("comment", ['id' => $id]);
-		redirect("");
+	public function delete_comment() {
+		$id =  $_POST['comment_id'];
+		return $this->db->delete("comment", ['id' => $id]);
 	}
 	
 }

@@ -63,7 +63,7 @@ $route['friend']='user/friend';
 $route['ckeditor']='user/ckeditor';
 $route['(:any)']='user/profile/$1/';
 $route['chat/(:any)']='user/chat/$1/';
-$route['user/comment/delete/(:any)']='user/delete_comment/$1';
+$route['user/comment/delete']='user/delete_comment';
 
 $route['profile/setting']='setting/index';
 
