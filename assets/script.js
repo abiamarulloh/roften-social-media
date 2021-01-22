@@ -7,11 +7,9 @@ $(document).ready(function(){
 	});
 });
 
-
 ClassicEditor
 .create( document.querySelector( '#ckeditor-body' ))
 .catch( error => {});
-
 
 
 function seeComment(e, post_id, user_id) {
@@ -80,5 +78,28 @@ function deleteComment(post_id) {
 			}
 		})
 	})
+}
+
+
+function deletePost(post_id) {
+	$.ajax({
+		type: 'POST',
+		url: BASE_URL + 'user/post/delete/',
+		data:{ post_id: post_id },
+		success: function(data){
+			window.location.reload()
+		}
+	})
+}
+
+
+function confirmDelete(post_id) {
+	var deleteAlert = `Yakin ingin hapus Postingan ini ?`;
+	var confirm = window.confirm(deleteAlert);
+	if(confirm == true) {
+		deletePost(post_id)
+	}else {
+		return false;
+	}
 }
 

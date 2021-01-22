@@ -211,9 +211,17 @@ class User extends CI_Controller {
 
 	}
 
-	public function delete_comment() {
+	public function delete_comment() 
+	{
 		$id =  $_POST['comment_id'];
 		return $this->db->delete("comment", ['id' => $id]);
+	}
+
+	public function delete_post() 
+	{
+		$id =  $_POST['post_id'];
+		$this->db->delete("post", ['id' => $id]);
+		$this->db->delete("comment", ['post_id' => $id]);
 	}
 	
 }

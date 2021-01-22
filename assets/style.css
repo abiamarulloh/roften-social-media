@@ -94,11 +94,11 @@ body {
 	margin-right: 0;
 }
 
-.show-comment-link {
+.show-comment-link, .delete-post-link{
 	cursor: pointer;
 }
 
-.show-comment-link:hover {
+.show-comment-link:hover, .delete-post-link:hover {
 	text-decoration: underline;
 }
 

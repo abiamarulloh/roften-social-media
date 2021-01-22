@@ -24,7 +24,11 @@
 						</div>
 					</a>
 					<p class="card-text"><?= htmlspecialchars_decode($user_post["body"]); ?></p>
-					<p class="show-comment-link" onclick="seeComment('section-comment-<?= $user_post['post_id'] ?>', <?= $user_post['post_id'] ?>, <?= $user['id'] ?>)">Show Comment</p>
+					<div class="mt-4">
+						<span class="show-comment-link" onclick="seeComment('section-comment-<?= $user_post['post_id'] ?>', <?= $user_post['post_id'] ?>, <?= $user['id'] ?>)"> <i class="fas fa-comment"></i> Comments </span>
+						<span class="delete-post-link ml-4 <?= $user_post['username'] == $user['username'] ? '' : 'd-none' ?>" 
+						onclick="confirmDelete(<?= $user_post['post_id']  ?>)"><i class="fas fa-trash"></i> Delete Post</span>
+					</div>
 				</div>
 				<div class="card-footer border-0 mb-5 d-none" id="section-comment-<?= $user_post['post_id'] ?>">
 					<?php $this->session->flashdata("message"); ?>
