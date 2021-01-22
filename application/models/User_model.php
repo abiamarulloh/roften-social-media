@@ -57,7 +57,7 @@ class User_model extends CI_Model{
 	public function get_user_comments()
 	{
 		$this->db->order_by("comment.create_at", 'DESC');
-		$this->db->select("username, fullname, comment, image, comment.post_id as post_id, comment.id as comment_id");
+		$this->db->select("username, fullname, comment, image, comment.post_id as post_id, comment.id as comment_id, comment.create_at as comment_create_at");
 		$this->db->from("comment");
 		$this->db->join("post", "comment.post_id = post.id");
 		$this->db->join("user", "comment.user_id = user.id");
@@ -67,7 +67,7 @@ class User_model extends CI_Model{
 	public function get_user_comment_by_post($post_id)
 	{
 		$this->db->order_by("comment.create_at", 'DESC');
-		$this->db->select("username, fullname, comment, image, comment.post_id as post_id, comment.id as comment_id");
+		$this->db->select("username, fullname, comment, image, comment.post_id as post_id, comment.id as comment_id, comment.create_at as comment_create_at");
 		$this->db->from("comment");
 		$this->db->join("post", "comment.post_id = post.id");
 		$this->db->join("user", "comment.user_id = user.id");

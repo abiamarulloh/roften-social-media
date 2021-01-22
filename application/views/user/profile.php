@@ -24,17 +24,17 @@
                         <div class="card-body">
                             <ul class="list-group">
                                 <li class="list-group-item border-0">
-                                    <small class="badge badge-primary">Profesi</small> <br>
+									<span class="d-block font-weight-bold">Profesi</span> <br>
 									<?= $friend['profesi']; ?>
 									<hr>
                                 </li>
                                 <li class="list-group-item border-0">
-                                    <small class="badge badge-primary">Sekolah</small> <br>
+                                    <span class="d-block font-weight-bold">Universitas/ Sekolah/ perusahaan</span> <br>
 									<?= $friend['sekolah']; ?>
 									<hr>
                                 </li>
                                 <li class="list-group-item border-0">
-                                    <small class="badge badge-primary">Bio</small> <br>
+									<span class="d-block font-weight-bold">Bio</span> <br>
 									<?= $friend['bio']; ?>
 									<hr>
                                 </li>
@@ -124,6 +124,7 @@
 										<div class="ml-3">
 											<span class="d-block"><?= $user_comment['fullname']; ?></span>
 											<span  class="d-block"><a href="<?= base_url($user_comment['username']); ?>" class="text-dark"><?= $user_comment['username']; ?></a></span>
+											<small class="d-block"><?= date("l, d F Y h:i:j", $user_comment['comment_create_at']) ?></small>
 										</div>
 										<div class="ml-4 <?= $user_comment['username'] == $user['username'] ? '' : 'd-none' ?> delete-wrap">
 											<button type="submit" data-id="<?= $user_comment['comment_id'] ?>" class="text-dark btn-delete">

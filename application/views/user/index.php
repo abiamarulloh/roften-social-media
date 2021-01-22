@@ -9,7 +9,7 @@
 			<?php foreach($users_posts as $user_post) : ?>
 			<div class="card border-0 mb-5">
 				<div class="card-body fit-body-post">
-					<h1 class="display-4 text-center m-3" id="post-title"><strong><?= $user_post['title'] ?></strong></h1>
+					<h1 class="text-center m-3" id="post-title"><strong><?= $user_post['title'] ?></strong></h1>
 					<small class="d-block text-center m-3 my-2"><?= date("l, d F Y h:i:j", $user_post['post_create']) ?></small>
 
 					<a href="<?= base_url($user_post['username']); ?>">
@@ -51,6 +51,7 @@
 										<div class="ml-3">
 											<span class="d-block"><?= $user_comment['fullname']; ?></span>
 											<span  class="d-block"><a href="<?= base_url($user_comment['username']); ?>" class="text-dark"><?= $user_comment['username']; ?></a></span>
+											<small class="d-block"><?= date("l, d F Y h:i:j", $user_comment['comment_create_at']) ?></small>
 										</div>
 										<div class="ml-4 <?= $user_comment['username'] == $user['username'] ? '' : 'd-none' ?> delete-wrap">
 											<button type="submit" data-id="<?= $user_comment['comment_id'] ?>" class="text-dark btn-delete">

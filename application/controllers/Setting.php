@@ -22,7 +22,7 @@ class Setting extends CI_Controller {
 		$this->form_validation->set_rules('fullname', 'fullname', 'required');
 
 		if($this->form_validation->run() == false) {
-			$data['title'] = "My Profile";
+			$data['title'] = "Setting - Profile";
 			$this->load->view('layouts/header',$data);
 			$this->load->view('layouts/navbar',$data);
 			$this->load->view('user/setting', $data);
@@ -110,7 +110,7 @@ class Setting extends CI_Controller {
 		
 
 		if($this->form_validation->run() == false) {
-			$data['title'] = "Security";
+			$data['title'] = "Setting - Profile";
 			$this->load->view('layouts/header',$data);
 			$this->load->view('layouts/navbar',$data);
 			$this->load->view('user/setting');
@@ -168,7 +168,7 @@ class Setting extends CI_Controller {
 			]);
 	
 			if($this->form_validation->run() == false) {
-				$data['title'] = "Medsos";
+				$data['title'] = "Setting - Profile";
 				$this->load->view('layouts/header',$data);
 				$this->load->view('layouts/navbar',$data);
 				$this->load->view('user/setting');

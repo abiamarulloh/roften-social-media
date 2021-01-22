@@ -1,8 +1,17 @@
 
 <div class="container"> 
-    <div class="row my-5">
+	<div class="row mt-5">
+		<div class="col-md-12 mt-5">
+			<form>
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" id="searchkeyUp" placeholder="type for find Friend" aria-label="Recipient's username" aria-describedby="button-addon2">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row mb-5"  id="listData">
 		<?php foreach($all_users as $all_user) :  ?>
-			<div class="col-md-4 mb-4 text-center mt-5 mb-5">
+			<div class="col-md-4 mb-4 text-center mt-2 mb-2 card">
 			<?php if($all_user['username'] != $user['username']  ) : ?>
 				<a href="<?= base_url($all_user['username']);  ?>" class="text-decoration-none text-dark">
 					<div class="card shadow-sm border-0">

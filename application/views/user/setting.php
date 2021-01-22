@@ -61,7 +61,7 @@
                         </div>
 						<div class="form-group d-flex justify-content-between">
 							<a href="<?= base_url($username) ?>" class="btn bg-white"><i class="fas fa-arrow-left"></i></a>
-							<button type="submit" class="btn btn-primary">Save</button>
+							<button type="submit" class="btn bg-white text-dark">Save</button>
 						</div>
                     </form>
                 </div>
@@ -93,8 +93,8 @@
                             <?= form_error("confirmpassword",'<small class="text-danger">' , '</small>' ) ?>
                         </div>
 						<div class="form-group d-flex justify-content-between">
-							<button type="submit" class="btn btn-primary">Save</button>
-							<a href="<?= base_url($username) ?>" class="btn btn-secondary">Back</a>
+							<a href="<?= base_url($username) ?>" class="btn bg-white"><i class="fas fa-arrow-left"></i></a>
+							<button type="submit" class="btn bg-white text-dark">Save</button>
 						</div>
                     </form>
                 </div>
@@ -122,8 +122,8 @@
                             <small class="text-muted">Example : beehon06 </small>
                         </div>
 						<div class="form-group d-flex justify-content-between">
-							<button type="submit" class="btn btn-primary">Save</button>
-							<a href="<?= base_url($username) ?>" class="btn btn-secondary">Back</a>
+							<a href="<?= base_url($username) ?>" class="btn bg-white"><i class="fas fa-arrow-left"></i></a>
+							<button type="submit" class="btn bg-white text-dark">Save</button>
 						</div>
                     </form>
                 

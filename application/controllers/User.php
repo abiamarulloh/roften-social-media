@@ -28,7 +28,8 @@ class User extends CI_Controller {
 		
 	}
 
-	public function comment() {
+	public function comment() 
+	{
 		$this->form_validation->set_rules('comment', 'comment', 'required');
 		if($this->form_validation->run() == false) { 
 			echo validation_errors();
@@ -64,6 +65,7 @@ class User extends CI_Controller {
 								<div class="ml-3">
 									<span class="d-block">'. $user_comment['fullname'] .'</span>
 									<span class="d-block"><a href="'. base_url($user_comment['username']) .'" class="text-dark">'. $user_comment['username'] .'</a></span>
+									<small class="d-block">'. date("l, d F Y h:i:j", $user_comment['comment_create_at']) .'</small>	
 								</div>
 								<div class="' . 'm-4 ' . $conditionAccess . ' delete-wrap' . '">
 									<button type="submit" data-id="' . $user_comment['comment_id'] .  '"
@@ -84,7 +86,7 @@ class User extends CI_Controller {
 		// Mengambil data user by email
 		$data['user'] = $this->db->get_where("user", ["email" => $this->session->userdata("email")])->row_array();
 		$data['all_users'] = $this->User_model->all_user();
-		$data['title'] = "Roften - Home";
+		$data['title'] = "Roften - Friends";
 		$this->load->view('layouts/header', $data);
 		$this->load->view('layouts/navbar', $data);
 		$this->load->view('user/friend', $data);
@@ -108,7 +110,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('body', 'body', 'required');
 
 		if($this->form_validation->run() == false) {
-			$data['title'] = "My Profile";
+			$data['title'] = $data['friend']['fullname'];
 			$this->load->view('layouts/header',$data);
 			$this->load->view('layouts/navbar',$data);
 			$this->load->view('user/profile', $data);
