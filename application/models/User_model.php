@@ -25,11 +25,11 @@ class User_model extends CI_Model{
 		$this->db->order_by("chat.date_created", 'ASC');
 		return $this->db->select('*')->from('chat')
 			->group_start()
-					->where('receiver_id', $me['id'])
-					->where('sender_id', $friend['id'])
+					->where('receiver_id', $me)
+					->where('sender_id', $friend)
 					->or_group_start()
-							->where('receiver_id', $friend['id'])
-							->where('sender_id', $me['id'])
+							->where('receiver_id', $friend)
+							->where('sender_id', $me)
 					->group_end()
 			->group_end()
 		->get();

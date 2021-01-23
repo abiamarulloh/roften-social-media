@@ -170,7 +170,8 @@ class User extends CI_Controller {
 		}
 	}
 	
-	public function chat($username){
+	public function chat($username)
+	{
 		// Mengambil data receiver dari url
 		$data['username'] 	= $username;
 		
@@ -181,20 +182,90 @@ class User extends CI_Controller {
 		$data['friend'] = $this->db->get_where("user", ['username' => $username])->row_array();
 	
 		// Membuat variabel sender dan receiver untuk mendapatkan Id nya
-		$data['chatAll'] 	= $this->User_model->userChat($data['user'], $data['friend'])->result_array();
-		
+		$data['chatAll'] = $this->User_model->userChat($data['user']['id'], $data['friend']['id'])->result_array();
 
+		$data['title'] = "Chat - ". $username;
+		$this->load->view('layouts/header',$data);
+		$this->load->view('layouts/navbar',$data);
+		$this->load->view('user/chat', $data);
+		$this->load->view('layouts/footer');
+	}
+
+
+	public function chatList() 
+	{
+		$user_id = $_POST['sender_id'];
+		$friend_id = $_POST['receiver_id'];
+		$username 	= $_POST['username'];
+
+		// Mengambil data user by email
+		$user = $this->db->get_where("user", ["email" => $this->session->userdata("email")])->row_array();
+
+		// Mengambil data id user sender by username
+		$friend = $this->db->get_where("user", ['username' => $username])->row_array();
+	
+		// Membuat variabel sender dan receiver untuk mendapatkan Id nya
+		$chatAll = $this->User_model->userChat($user_id, $friend_id)->result_array();
+		foreach($chatAll as $c) : 
+			if($c['message']) :
+				if($c['sender_id'] && $c['receiver_id'] ) :
+					if($c['sender_id'] == $user['id'] ) :
+						echo '
+							<li class="right-chat ml-auto list-group-item border-0">
+								<div class="text-break mr-2">
+									<span>
+										'. $c['message'] .'
+									</span>
+									<span class="float-left mt-5 d-flex align-items-center">
+										<i class="fas fa-check ml-2 text-primary float-left"></i>
+										<span class="date-chat-left m-2">'. date("h.i", $c['date_created']) .'</span>
+									</span>
+								</div>
+								<div>
+									<img 
+										src="'. base_url("assets/images/profile/") . $user['image'] .'" 
+										alt="'. $user['image'] .'"
+									>
+								</div>	
+						';
+					else :
+						echo '
+							<li class="left-chat mr-auto list-group-item border-0">
+								<div>
+									<a href="'. base_url($friend['username']) .'">
+										<img 
+											src="'. base_url("assets/images/profile/") . $friend['image'] .'" 
+											alt="'. $friend['image'] .'"
+										>
+									</a>
+								</div>
+								<div class="text-break ml-2">
+									<span>
+										'. $c['message'] .'
+									</span>
+									<span class="float-right mt-5 d-flex align-items-center">
+										<span class="date-chat-left m-2">'. date("h.i", $c['date_created']) .'</span>
+										<i class="fas fa-check mr-2 text-primary float-right"></i>
+									</span>
+								</div>
+						';
+							
+					endif;
+					echo '</li>';
+				endif;
+			endif;
+		endforeach;
+	}
+
+	public function postChat() 
+	{
 		// Membuat Rules
 		$this->form_validation->set_rules('messageUser', 'messageUser', 'required',[
 			'required' => "Pesan harus di isi"
 		]);
 
 		if($this->form_validation->run() == false) {
-			$data['title'] = "Chat - ". $username;
-			$this->load->view('layouts/header',$data);
-			$this->load->view('layouts/navbar',$data);
-			$this->load->view('user/chat', $data);
-			$this->load->view('layouts/footer');
+			echo validation_errors();
 		}else {
 			// Jika Berhasil
 			$data = [
@@ -203,12 +274,14 @@ class User extends CI_Controller {
 				"message"		=> htmlspecialchars($this->input->post("messageUser", true)),
 				'date_created' 	=> time()
 			];
-		
-			// ekseskusi didalam model insertUser  
-			$this->db->insert("chat",$data);
-			redirect("user/chat/" . $username );
+			
+			// redirect("user/chat/" . $username );
+			$result = $this->db->insert("chat", $data);
+			if($result) {
+				$alert = "Chat successfull add";
+				echo $alert;
+			}
 		}
-
 	}
 
 	public function delete_comment() 

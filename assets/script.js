@@ -34,7 +34,7 @@ function getComment(post_id) {
 }
 
 
-// // Post Comment
+// Post Comment
 function postComment(user_id, post_id) {
 	$( `#comment_submit_${post_id}`).click(function(event)
 	{
@@ -102,4 +102,65 @@ function confirmDelete(post_id) {
 		return false;
 	}
 }
+
+
+$(document).ready(function(){
+	var sender_id = $(`#sender_id`).val();
+	var receiver_id = $(`#receiver_id`).val();
+	window.setInterval(() => {
+		getChat(sender_id, receiver_id)
+	}, 2000);
+});
+
+// GetChat
+function getChat(sender_id, receiver_id) {
+	var username = $("#friend_username").val()
+	$.ajax(
+		{
+			type: "post",
+			url: BASE_URL + 'user/chatList',
+			data: { sender_id: sender_id,
+				receiver_id: receiver_id,
+				username: username, },
+			cache: false,
+			success: function(response)
+			{
+				$(`#chat_list`).html(response);
+			},
+			error: function() 
+			{
+				alert("Invalide!");
+			}
+		}
+	);
+}
+
+// Chat Post
+$("#chatBtnSubmit").click(function(e) {
+	e.preventDefault();		
+	
+	var sender_id = $(`#sender_id`).val();
+	var receiver_id = $(`#receiver_id`).val();
+	var chat = $(`#messageUser`).val();
+	
+	$.ajax(
+		{
+			type: "post",
+			url: BASE_URL + 'user/postChat',
+			data: { "sender_id": sender_id, "receiver_id": receiver_id, "messageUser": chat },
+			cache: false,
+			success: function(response)
+			{
+					$(`#messageUser`).val("");
+					// $(`#result_or_error_comment`).html(response);
+
+					getChat(sender_id, receiver_id)
+			},
+			error: function() 
+			{
+				alert("Invalide!");
+			}
+		}
+	);
+})
 

@@ -17,7 +17,7 @@
 					</div>
                 </div>
                 <div class="card-body" style="height: 100vh; overflow-y: auto">
-                    <ul class="list-group mb-5">
+                    <ul class="list-group mb-5" id="chat_list">
                         <?php foreach($chatAll as $c) : ?>
                             <?php if($c['message']) : ?> 
 								<?php if($c['sender_id'] && $c['receiver_id'] ) : ?>
@@ -70,15 +70,16 @@
                     </ul>
                    
 					<div class="card-footer mb-5 ">
-						<form action="" method="post">
-								<input type="text" hidden name="sender_id" value="<?= $user['id']; ?>">
-								<input type="text"  hidden name="receiver_id" value="<?= $friend['id']; ?>">
+						<?= form_open(); ?>
+								<input type="text" hidden id="friend_username" value="<?= $friend['username'] ?>">
+								<input type="text" hidden name="sender_id" id="sender_id" value="<?= $user['id']; ?>">
+								<input type="text"  hidden name="receiver_id" id="receiver_id" value="<?= $friend['id']; ?>">
 							<div class="form-group">
 								<label for="messageUser">Pesan</label>
 								<textarea class="form-control" name="messageUser" id="messageUser"></textarea>
-								<?= form_error("messageUser", "<small class='text-danger'>", "</small>") ?>
+								<div id="result_or_error_comment"></div>
 							</div>
-							<button type="submit" class="btn btn-primary mb-5">Kirim Pesan <i class="fas fa-paper-plane"></i></button>
+							<button type="submit" id="chatBtnSubmit" class="btn btn-primary mb-5">Kirim Pesan <i class="fas fa-paper-plane"></i></button>
 						</form>
 					</div>
 				</div>
