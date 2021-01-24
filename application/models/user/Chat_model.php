@@ -79,18 +79,25 @@ class Chat_model extends CI_Model {
 		// Get Data Chat 
 		$userFriends = [];
 
-		$this->db->where_not_in('sender_id', $userId);
-		$chatListSenders =  $this->db->get("chat")->result_array();
-		foreach ($chatListSenders as $chatListSender) {
-			$userFriends[] =  ['friend_id' => $chatListSender['sender_id']];
-		}
+		$this->db->order_by("chat.date_created", 'DESC');
+		$this->db->group_by("chat.sender_id");
+		$this->db->group_by("chat.receiver_id");
+		$chats = $this->db->select('*')->from('chat')
+			->group_start()
+					->where('receiver_id', $userId)
+					->or_group_start()
+							->where('sender_id', $userId)
+					->group_end()
+			->group_end()
+		->get()->result_array();
 
-		$this->db->where_not_in('receiver_id', $userId);
-		$chatListReceivers =  $this->db->get("chat")->result_array();
-		foreach ($chatListReceivers as $chatListReceiver) {
-			$userFriends[] = ["friend_id" => $chatListReceiver['receiver_id']];
+		foreach($chats as $chat) {
+			if($chat['sender_id'] != $userId) {
+				$userFriends[] =  ['friend_id' => $chat['sender_id']];
+			}else if($chat['receiver_id'] != $userId) {
+				$userFriends[] = ["friend_id" => $chat['receiver_id']];
+			}
 		}
-		
 		return $userFriends;
 	}
 
