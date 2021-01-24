@@ -52,7 +52,7 @@
                             <input type="text" class="form-control" name="profesi" value="<?= $user['profesi']; ?>" id="profesi">
                         </div>
                         <div class="form-group">
-                            <label for="sekolah">Sekolah</label>
+                            <label for="sekolah">Universitas/ Sekolah/ perusahaan</label>
                             <input type="text" class="form-control" name="sekolah" value="<?= $user['sekolah']; ?>" id="sekolah">
                         </div>
                         <div class="form-group">

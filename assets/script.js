@@ -21,9 +21,10 @@ function seeComment(e, post_id, user_id) {
 	}, 2000);
 }
 
+
 // Get Comment
 function getComment(post_id) {
-	fetch(BASE_URL + 'user/commentList/' + post_id, {
+	fetch(BASE_URL + 'user/home/getCommentWithAjax/' + post_id, {
 		method: "GET",
 	})
 	.then((response) => response.text())
@@ -43,7 +44,7 @@ function postComment(user_id, post_id) {
 		$.ajax(
 			{
 				type: "post",
-				url: BASE_URL + 'user/comment',
+				url: BASE_URL + 'user/home/comment',
 				data: { "post_id": post_id, "user_id": user_id, "comment": comment_body },
 				cache: false,
 				success: function(response)
@@ -71,7 +72,7 @@ function deleteComment(post_id) {
 		event.preventDefault();
 		$.ajax({
 			type:'POST',
-			url: BASE_URL + 'user/comment/delete/',
+			url: BASE_URL + 'user/home/delete_comment',
 			data:{comment_id: comment_id},
 			success: function(data){
 				getComment(post_id)
@@ -84,7 +85,7 @@ function deleteComment(post_id) {
 function deletePost(post_id) {
 	$.ajax({
 		type: 'POST',
-		url: BASE_URL + 'user/post/delete/',
+		url: BASE_URL + 'user/home/delete_post',
 		data:{ post_id: post_id },
 		success: function(data){
 			window.location.reload()
@@ -107,21 +108,49 @@ function confirmDelete(post_id) {
 $(document).ready(function(){
 	var sender_id = $(`#sender_id`).val();
 	var receiver_id = $(`#receiver_id`).val();
-	window.setInterval(() => {
-		getChat(sender_id, receiver_id)
-	}, 2000);
+	if(sender_id && receiver_id) {
+		window.setInterval(() => {
+			getChat(sender_id, receiver_id)
+		}, 2000);
+	}
+
+	var userId = $("#userIdOnChat").val();
+	if(userId != undefined) {
+		window.setInterval(() => {
+			getListChatUser()
+		}, 2000);
+	}
 });
 
+
 // GetChat
+function getListChatUser() {
+	$.ajax(
+		{
+			type: "POST",
+			url: BASE_URL + 'user/chat/getChatListUser',
+			cache: false,
+			success: function(response)
+			{
+				$(`#userChatList`).html(response);
+				console.log(response)
+			},
+			error: function() 
+			{
+				alert("Invalide!");
+			}
+		}
+	);
+}
+
+
 function getChat(sender_id, receiver_id) {
 	var username = $("#friend_username").val()
 	$.ajax(
 		{
 			type: "post",
-			url: BASE_URL + 'user/chatList',
-			data: { sender_id: sender_id,
-				receiver_id: receiver_id,
-				username: username, },
+			url: BASE_URL + 'user/chat/getChatWithAjax',
+			data: { sender_id: sender_id, receiver_id: receiver_id, username: username, },
 			cache: false,
 			success: function(response)
 			{
@@ -135,7 +164,7 @@ function getChat(sender_id, receiver_id) {
 	);
 }
 
-// Chat Post
+
 $("#chatBtnSubmit").click(function(e) {
 	e.preventDefault();		
 	
@@ -146,7 +175,7 @@ $("#chatBtnSubmit").click(function(e) {
 	$.ajax(
 		{
 			type: "post",
-			url: BASE_URL + 'user/postChat',
+			url: BASE_URL + 'user/chat/sendChatWithAjax',
 			data: { "sender_id": sender_id, "receiver_id": receiver_id, "messageUser": chat },
 			cache: false,
 			success: function(response)
@@ -154,7 +183,7 @@ $("#chatBtnSubmit").click(function(e) {
 					$(`#messageUser`).val("");
 					// $(`#result_or_error_comment`).html(response);
 
-					getChat(sender_id, receiver_id)
+					// getChat(sender_id, receiver_id)
 			},
 			error: function() 
 			{

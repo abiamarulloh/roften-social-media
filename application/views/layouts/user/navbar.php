@@ -10,12 +10,17 @@
 
 <nav class="navbar navbar-expand-lg fixed-bottom  navbar-bg navbar-light  shadow-sm ">
   <div class="container d-flex justify-content-around">
-      <a class="mr-2 text-decoration-none text-white" class="m-0" href="<?= base_url(""); ?>"> 
+      <a class="mr-2 text-decoration-none text-white" class="m-0" href="<?= base_url("home"); ?>"> 
         <i class="fas fa-lg fa-fw fa-home"></i>
       </a>
 			<a class="mr-2 text-decoration-none text-white" class="m-0" href="<?= base_url("friend"); ?>"> 
         <i class="fas fa-lg fa-fw fa-users"></i>  
       </a>
+
+			<a class="mr-2 text-decoration-none text-white" class="m-0" href="<?= base_url("chat"); ?>"> 
+        <i class="fas fa-lg fa-fw fa-comment-alt"></i>  
+      </a>
+			
 			<div class="btn-group dropup">
 					<a class="m-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<img src="<?= base_url("assets/images/profile/") . $user['image']; ?>" alt="user" class="img-thumbnail rounded-circle" style="max-height:30px; height:30px; width:30px; max-width:30px;"> 
@@ -33,4 +38,5 @@
   
   </div>
 </nav>
+
 

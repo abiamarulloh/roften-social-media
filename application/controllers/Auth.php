@@ -11,7 +11,7 @@ class Auth extends CI_Controller {
 	public function index()
 	{
 		if($this->session->has_userdata('email') == true){
-            redirect('');
+            redirect('home');
         }
 		// Membuat Rules
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -19,10 +19,10 @@ class Auth extends CI_Controller {
 
 		if($this->form_validation->run() == false) {
 			$data['title'] = "Login";
-			$this->load->view('layouts/header',$data);
+			$this->load->view('layouts/user/header',$data);
 			$this->load->view('auth/navbar',$data);
 			$this->load->view('auth/index');
-			$this->load->view('layouts/footer');
+			$this->load->view('layouts/user/footer');
 		}else{
 			// Jika Berhasil
 			return $this->_login();
@@ -105,10 +105,10 @@ class Auth extends CI_Controller {
 
 		if($this->form_validation->run() == false) {
 			$data['title'] = "Register";
-			$this->load->view('layouts/header',$data);
+			$this->load->view('layouts/user/header',$data);
 			$this->load->view('auth/navbar',$data);
 			$this->load->view('auth/register');
-			$this->load->view('layouts/footer');
+			$this->load->view('layouts/user/footer');
 		}else{
 			$username = explode("@", $this->input->post("email", true));
 			$username = $username[0];
@@ -136,8 +136,6 @@ class Auth extends CI_Controller {
 			 ');
 			 redirect("login");
 		}
-
-
 	}
 
 	public function logout()

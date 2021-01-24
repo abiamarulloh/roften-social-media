@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['default_controller'] = 'user';
+$route['default_controller'] = 'auth/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -58,14 +58,19 @@ $route['login']='auth/index';
 $route['register']='auth/register';
 $route['logout']='auth/logout';
 
+$route['home']='user/home/index';
+$route['chat']='user/chat/index';
+$route['friend']='user/friend/index';
+$route['ckeditor']='user/user/ckeditor';
 
-$route['friend']='user/friend';
-$route['ckeditor']='user/ckeditor';
-$route['(:any)']='user/profile/$1/';
-$route['chat/(:any)']='user/chat/$1/';
-$route['user/comment/delete']='user/delete_comment';
-$route['user/post/delete']='user/delete_post';
+$route['profile/setting']='user/profile/profile';
 
-$route['profile/setting']='setting/index';
+$route['(:any)']='user/profile/index/$1/';
+$route['chat/(:any)']='user/chat/chat/$1/';
+
+
+
+
+
 
 

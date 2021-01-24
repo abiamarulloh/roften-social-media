@@ -2,9 +2,9 @@
     <div class="row my-5 ">
         <div class="col-md-12 mb-5 mx-auto">
             <div class="card fixed-top">
-				<div class="card-header navbar-bg text-white ">
+				<div class="card-header navbar-bg text-white">
                     <div class="d-flex align-items-center">
-						<a href="<?= base_url($username); ?>" class="btn btn-sm text-white mr-2"> 
+						<a href="javascript:history.go(-1)" class="btn btn-sm text-white mr-2"> 
 							<i class="fas fa-arrow-left"></i>
 						</a>
 						<a href="<?= base_url($username); ?>" class="text-decoration-none text-white w-100">
@@ -21,10 +21,8 @@
                         <?php foreach($chatAll as $c) : ?>
                             <?php if($c['message']) : ?> 
 								<?php if($c['sender_id'] && $c['receiver_id'] ) : ?>
-								
 									<?php if($c['sender_id'] == $user['id'] ) : ?>
 										<li class="right-chat ml-auto list-group-item border-0">
-										
 											<div class="text-break mr-2">
 												<span>
 													<?= $c['message']; ?>
@@ -40,7 +38,6 @@
 													alt="<?= $user['image']; ?>"
 												>
 											</div>
-										
 									<?php else : ?>
 										<li class="left-chat mr-auto list-group-item border-0">
 											<div>
@@ -59,9 +56,7 @@
 													<span class="date-chat-left m-2"><?= date("h.i", $c['date_created']); ?></span>
 													<i class="fas fa-check mr-2 text-primary float-right"></i>
 												</span>
-											
 											</div>
-											
 									<?php endif; ?>
 									</li>
                                 <?php endif; ?>
