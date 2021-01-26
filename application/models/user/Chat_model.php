@@ -80,9 +80,8 @@ class Chat_model extends CI_Model {
 		$userFriends = [];
 
 		$this->db->order_by("chat.date_created", 'DESC');
-		$this->db->group_by("chat.sender_id");
-		$this->db->group_by("chat.receiver_id");
-		$chats = $this->db->select('*')->from('chat')
+		$this->db->group_by("chat.sender_id", "chat.receiver_id");
+		$chats = $this->db->select('receiver_id, sender_id')->from('chat')
 			->group_start()
 					->where('receiver_id', $userId)
 					->or_group_start()
@@ -98,7 +97,14 @@ class Chat_model extends CI_Model {
 				$userFriends[] = ["friend_id" => $chat['receiver_id']];
 			}
 		}
-		return $userFriends;
+
+		$friend = [];
+		foreach($userFriends as $item) {
+			$friend[] = ["friend_id" => $item['friend_id']];
+		}
+		
+		return array_unique($friend, SORT_REGULAR);
+		
 	}
 
 	public function getLastChat($me, $friend) {

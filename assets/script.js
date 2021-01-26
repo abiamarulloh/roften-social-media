@@ -133,7 +133,6 @@ function getListChatUser() {
 			success: function(response)
 			{
 				$(`#userChatList`).html(response);
-				console.log(response)
 			},
 			error: function() 
 			{
