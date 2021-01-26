@@ -139,18 +139,17 @@ class Chat extends CI_Controller {
 	public function getChatListUser() {
 		$data['user'] = $this->db->get_where("user", ["email" => $this->session->userdata("email")])->row_array();
 		$data['userFriends'] = $this->Chat_model->userChatList($data['user']['id']);
+		
 		foreach($data['userFriends'] as $userFriend) {
 			$this->db->select("fullname, username, id as userId, image");
-			$data['userLists'] = $this->db->get_where("user", ['id' => $userFriend['friend_id']])->result_array();
-			
+			$data['userLists'] = $this->db->select("fullname")->get_where("user", ['id' => $userFriend['friend_id']])->result_array();
 			foreach($data['userLists'] as $userList) {
 				if($userList) {
 					$lastChat = $this->Chat_model->getLastChat($data['user']['id'], $userList['userId']);
 					$userLastChat = $this->db->select("fullname")->get_where("user", ['id' => $lastChat['sender_id']])->row_array();
 				}
-				
 				echo '
-					<a href="'. base_url("chat/") . $userList['username'] .'" class="text-dark text-decoration-none">
+					<a href="'. base_url("chat/") . $userList['username'] .'" class="text-dark text-decoration-none my-3">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card">
@@ -160,7 +159,8 @@ class Chat extends CI_Controller {
 										</div>
 										<div class="ml-3">
 											<span>'.  $userList['fullname'] .'</span>
-											<smal class="d-block">'. $userLastChat['fullname'] . ': ' . $lastChat['message'] .' <i class="fas fa-check"></i></smal>
+											<smal class="d-block">'. $userLastChat['fullname'] . ': ' . $lastChat['message'] .' <i class="fas fa-check"></i> 
+											</smal>
 											<small class="d-block">'. date("l, d F Y h:i:j", $lastChat['date_created']) .'</small>
 										</div>
 									</div>
