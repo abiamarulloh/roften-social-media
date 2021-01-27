@@ -14,10 +14,18 @@
 
 			let storage = localStorage.getItem("view");
 			if(!storage) {
-					let mobile = `width=device-width, initial-scale=1, shrink-to-fit=no`
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+					let desktop = `width=device-width, initial-scale=1, shrink-to-fit=no`
 					localStorage.setItem("view", `width=device-width, initial-scale=1, shrink-to-fit=no`)
+					$("#meta-view")[0].setAttribute("content", desktop)
+					$("#btn-view").html(`<i class="fas fa-desktop"></i> Desktop`)
+				}else{
+					let mobile = `width=device-width, initial-scale=0, shrink-to-fit=no`
+					localStorage.setItem("view", `width=device-width, initial-scale=0, shrink-to-fit=no`)
 					$("#meta-view")[0].setAttribute("content", mobile)
 					$("#btn-view").html(`<i class="fas fa-mobile"></i> Mobile`)
+				}
+				
 			}
 
 			$("#btn-view").on("click", () => {
@@ -27,11 +35,11 @@
 				if(storage == mobile) {
 					localStorage.setItem("view", desktop);
 					$("#meta-view")[0].setAttribute("content", desktop)
-					$("#btn-view").html(`<i class="fas fa-desktop"></i> Desktop`)
+					$("#btn-view").html(`<i class="fas fa-mobile"></i> Mobile`)
 				}else {
 					localStorage.setItem("view", mobile);
 					$("#meta-view")[0].setAttribute("content", mobile)
-					$("#btn-view").html(`<i class="fas fa-mobile"></i> Mobile`)
+					$("#btn-view").html(`<i class="fas fa-desktop"></i> Desktop`)
 				}
 
 			});
