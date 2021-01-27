@@ -14,8 +14,10 @@
 
 			let storage = localStorage.getItem("view");
 			if(!storage) {
+					let mobile = `width=device-width, initial-scale=1, shrink-to-fit=no`
 					localStorage.setItem("view", `width=device-width, initial-scale=1, shrink-to-fit=no`)
-					document.getElementsByTagName("head").appendChild(localStorage.getItem("view"));
+					$("#meta-view")[0].setAttribute("content", mobile)
+					$("#btn-view").html(`<i class="fas fa-mobile"></i> Mobile`)
 			}
 
 			$("#btn-view").on("click", () => {

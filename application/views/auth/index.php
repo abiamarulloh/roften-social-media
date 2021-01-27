@@ -41,7 +41,7 @@
 			Copyright &copy; Roften. <?= date("Y", time()) ?>
 		</div>
 		<div class="col-md-4">
-			<span class="btn" id="btn-view"><i class="fas fa-mobile"></i> Mobile</span>
+			<span class="btn" id="btn-view"></span>
 		</div>
 	</div>
 </div>
