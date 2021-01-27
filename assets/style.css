@@ -18,9 +18,14 @@ body {
 	box-shadow: 2px 11px 25px 0px rgba(0,0,0,0.75);
 }
 
-
 .navbar-bg, .btn-primary {
-	background-color: #004e9c;
+	background-color: #4CA1AF;  /* fallback for old browsers */
+}
+
+.btn-primary:hover {
+	background-color: #ececec;  /* fallback for old browsers */
+	color: rgb(22, 22, 22);
+
 }
 
 .dropdown-left {

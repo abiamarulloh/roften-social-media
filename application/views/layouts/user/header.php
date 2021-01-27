@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="utf-8">
+		
+    <meta name="viewport" id="meta-view" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicon -->
 		<link rel="shortcut icon" href="<?= base_url();  ?>assets/images/roften-logo.png" type="image/x-icon">

@@ -18,7 +18,7 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if($this->form_validation->run() == false) {
-			$data['title'] = "Login";
+			$data['title'] = "Login - Roften";
 			$this->load->view('layouts/user/header',$data);
 			$this->load->view('auth/navbar',$data);
 			$this->load->view('auth/index');
@@ -104,7 +104,7 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('confirmpassword', 'Confirm Password', 'required|matches[password]');
 
 		if($this->form_validation->run() == false) {
-			$data['title'] = "Register";
+			$data['title'] = "Register - Roften";
 			$this->load->view('layouts/user/header',$data);
 			$this->load->view('auth/navbar',$data);
 			$this->load->view('auth/register');
