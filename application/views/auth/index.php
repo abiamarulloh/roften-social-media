@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
-		<div class="col-md-7 d-flex align-items-center my-5">
+		<div class="col-md-7 d-flex align-items-center my-5 text-white">
 			<div>
-				<h1 class="display-4">Buat dan share artikelmu diroften</h1>
+				<h1 class="display-4">Temukan Artikel menarik dan teman baru yang asik di roften</h1>
 				<p class="lead">Gabung sekarang! untuk terhubung dengan pengguna lainnya dan agar dapat share artikel bermanfaat diroften</p>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                        <a href="<?= base_url("register"); ?>" class="text-decoration-none">don't have an account? register now!</a>
+                        <a href="<?= base_url("register"); ?>" class="text-decoration-none text-dark">don't have an account? register now!</a>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
     </div>
 </div>
 
-<div class="container mt-t mb-4" style="margin-top: 130px;">
+<div class="container mt-t mb-4 text-white" style="margin-top: 130px;">
 	<div class="row">
 		<div class="col-md-8">
 			Copyright &copy; Roften. <?= date("Y", time()) ?>

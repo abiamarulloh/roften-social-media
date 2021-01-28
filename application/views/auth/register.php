@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-		<div class="col-md-7 d-flex align-items-center my-5">
+		<div class="col-md-7 d-flex align-items-center my-5 text-white">
 			<div>
 				<h1 class="display-4">Buat dan share artikelmu diroften</h1>
 				<p class="lead">Gabung sekarang! untuk terhubung dengan pengguna lainnya dan agar dapat share artikel bermanfaat diroften</p>
@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<div class="container my-5">
+<div class="container my-5 text-white">
 	<div class="row">
 		<div class="col-md-8">
 			Copyright &copy; Roften. <?= date("Y", time()) ?>
