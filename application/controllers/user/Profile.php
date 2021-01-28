@@ -180,7 +180,7 @@ class Profile extends CI_Controller {
 						</button>
 					</div>
 				 ');
-				 redirect("setting/index");
+				 redirect("profile/index");
 			}else{
 				$this->session->set_flashdata("message", '
 				<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
@@ -226,7 +226,7 @@ class Profile extends CI_Controller {
 				 ];
 				
 				 // ekseskusi didalam model insertUser  
-				 $this->User_model->update_medsos($data, $id);
+				 $this->Profile_model->update_medsos($data, $id);
 				 $this->session->set_flashdata("message", '
 					<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
 						<strong> Selamat anda berhasil Memperbarui Medsos Pribadi di roften. </strong>

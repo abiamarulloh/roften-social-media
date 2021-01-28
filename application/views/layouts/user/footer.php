@@ -51,6 +51,53 @@
 					$("#btn-view").html(`<i class="fas fa-desktop"></i> Desktop`)
 				}
 			});
+
+			$("#profile-tab").click(function(){
+				localStorage.setItem("tabActive", "profile-tab");
+			});
+
+			$("#security-tab").click(function(){
+				localStorage.setItem("tabActive", "security-tab");
+			});
+
+			$("#medsos-tab").click(function(){
+				localStorage.setItem("tabActive", "medsos-tab");
+			});
+
+			// Check tabActive and add class active
+			let tabActive = localStorage.getItem("tabActive");
+			if(tabActive == "profile-tab") {
+				$("#profile-tab").addClass("active")
+				$("#profile-tab").attr("href", "#profile")
+
+				$("#profile").addClass("show active")
+				$("#security").removeClass("show active")
+				$("#medsos").removeClass("show active")
+
+				$("#medsos-tab").removeClass("active")
+				$("#security-tab").removeClass("active")
+			}else if(tabActive == "security-tab") {
+				$("#security-tab").addClass("active")
+				$("#security-tab").attr("href", "#security")
+
+				$("#security").addClass("show active")
+				$("#profile").removeClass("show active")
+				$("#medsos").removeClass("show active")
+
+				$("#profile-tab").removeClass("active")
+				$("#medsos-tab").removeClass("active")
+			}else if(tabActive == "medsos-tab") {
+				$("#medsos-tab").addClass("active")
+				$("#medsos-tab").attr("href", "#medsos")
+
+				$("#medsos").addClass("show active")
+				$("#security").removeClass("show active")
+				$("#profile").removeClass("show active")
+
+				$("#security-tab").removeClass("active")
+				$("#profile-tab").removeClass("active")
+			}
+
 		</script>
 		<script src="<?= base_url("assets/script.js"); ?> "></script>
   </body>

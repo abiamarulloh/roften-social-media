@@ -64,6 +64,8 @@ $route['friend']='user/friend/index';
 $route['ckeditor']='user/user/ckeditor';
 
 $route['profile/setting']='user/profile/profile';
+$route['profile/security']='user/profile/security';
+$route['profile/medsos']='user/profile/medsos';
 
 $route['(:any)']='user/profile/index/$1/';
 $route['chat/(:any)']='user/chat/chat/$1/';
