@@ -3,7 +3,7 @@
 		<div class="col-md-8 mx-auto" id="listData">
 			<form>
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" id="searchkeyUp" placeholder="type for find article" aria-label="Recipient's username" aria-describedby="button-addon2">
+					<input type="text" class="form-control" autofocus id="searchkeyUp" placeholder="type for find article" aria-label="Recipient's username" aria-describedby="button-addon2">
 				</div>
 			</form>
 			<?php foreach($users_posts as $user_post) : ?>

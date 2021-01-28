@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light shadow-md">
   <div class="container">
-    <a class="navbar-brand text-white text-uppercase" href="<?= base_url("") ?>">
-      <img src="<?= base_url('assets/images/roften-logo.png') ?>" width="30" height="30" class="d-inline-block align-top">
-      Roften
-    </a>
+				<a class="navbar-brand text-white text-uppercase" href="<?= base_url("") ?>">
+					<img src="<?= base_url('assets/images/roften-logo.png') ?>" width="30" height="30" class="d-inline-block align-top">
+					Roften
+				</a>
+				<span class="btn text-white" id="btn-view"></span>
     </div>
   </div>
 </nav>

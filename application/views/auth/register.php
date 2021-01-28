@@ -50,7 +50,7 @@
 			Copyright &copy; Roften. <?= date("Y", time()) ?>
 		</div>
 		<div class="col-md-4">
-			<span class="btn" id="btn-view"></span>
+			<span class="btn text-white" id="btn-view"></span>
 		</div>
 	</div>
 </div>
