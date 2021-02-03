@@ -58,6 +58,9 @@ class Chat extends CI_Controller {
 	
 		// Membuat variabel sender dan receiver untuk mendapatkan Id nya
 		$chatAll = $this->Chat_model->userChat($user_id, $friend_id)->result_array();
+		
+		date_default_timezone_set('Asia/Jakarta');
+
 		foreach($chatAll as $c) : 
 			if($c['message']) :
 				if($c['sender_id'] && $c['receiver_id'] ) :
@@ -70,7 +73,7 @@ class Chat extends CI_Controller {
 									</span>
 									<span class="float-left mt-5 d-flex align-items-center">
 										<i class="fas fa-check ml-2 text-primary float-left"></i>
-										<span class="date-chat-left m-2">'. date("h.i", $c['date_created']) .'</span>
+										<span class="date-chat-left m-2">'. date("H.i", $c['date_created']) .'</span>
 									</span>
 								</div>
 								<div>
@@ -96,7 +99,7 @@ class Chat extends CI_Controller {
 										'. $c['message'] .'
 									</span>
 									<span class="float-right mt-5 d-flex align-items-center">
-										<span class="date-chat-left m-2">'. date("h.i", $c['date_created']) .'</span>
+										<span class="date-chat-left m-2">'. date("H.i", $c['date_created']) .'</span>
 										<i class="fas fa-check mr-2 text-primary float-right"></i>
 									</span>
 								</div>
@@ -107,6 +110,7 @@ class Chat extends CI_Controller {
 				endif;
 			endif;
 		endforeach;
+		
 	}
 
 	public function sendChatWithAjax() 
@@ -139,37 +143,53 @@ class Chat extends CI_Controller {
 	public function getChatListUser() {
 		$data['user'] = $this->db->get_where("user", ["email" => $this->session->userdata("email")])->row_array();
 		$data['userFriends'] = $this->Chat_model->userChatList($data['user']['id']);
-		
-		foreach($data['userFriends'] as $userFriend) {
-			$this->db->select("fullname, username, id as userId, image");
-			$data['userLists'] = $this->db->select("fullname")->get_where("user", ['id' => $userFriend['friend_id']])->result_array();
-			foreach($data['userLists'] as $userList) {
-				if($userList) {
-					$lastChat = $this->Chat_model->getLastChat($data['user']['id'], $userList['userId']);
-					$userLastChat = $this->db->select("fullname")->get_where("user", ['id' => $lastChat['sender_id']])->row_array();
-				}
-				echo '
-					<a href="'. base_url("chat/") . $userList['username'] .'" class="text-dark text-decoration-none my-3">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="card">
-									<div class="card-body d-flex align-items-center">
-										<div>
-											<img src="'. base_url("assets/images/profile/") . $userList['image'] .'" alt="'.  $userList['image'] .'" width="50px" class="rounded-circle">
-										</div>
-										<div class="ml-3">
-											<span>'.  $userList['fullname'] .'</span>
-											<smal class="d-block">'. $userLastChat['fullname'] . ': ' . $lastChat['message'] .' <i class="fas fa-check"></i> 
-											</smal>
-											<small class="d-block">'. date("l, d F Y h:i:j", $lastChat['date_created']) .'</small>
+		if($data['userFriends']) {
+			foreach($data['userFriends'] as $userFriend) {
+				$this->db->select("fullname, username, id as userId, image");
+				$data['userLists'] = $this->db->select("fullname")->get_where("user", ['id' => $userFriend['friend_id']])->result_array();
+				foreach($data['userLists'] as $userList) {
+					if($userList) {
+						$lastChat = $this->Chat_model->getLastChat($data['user']['id'], $userList['userId']);
+						$userLastChat = $this->db->select("fullname")->get_where("user", ['id' => $lastChat['sender_id']])->row_array();
+					}
+					echo '
+						<a href="'. base_url("chat/") . $userList['username'] .'" class="text-dark text-decoration-none my-3">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="card">
+										<div class="card-body d-flex align-items-center">
+											<div>
+												<img src="'. base_url("assets/images/profile/") . $userList['image'] .'" alt="'.  $userList['image'] .'" width="50px" class="rounded-circle">
+											</div>
+											<div class="ml-3">
+												<span>'.  $userList['fullname'] .'</span>
+												<smal class="d-block">'. $userLastChat['fullname'] . ': ' . $lastChat['message'] .' <i class="fas fa-check"></i> 
+												</smal>
+												<small class="d-block">'. date("l, d F Y h:i:j", $lastChat['date_created']) .'</small>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</a>
-				';
+						</a>
+					';
+				}
 			}
+		}else {
+			echo '
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 mx-auto text-center">
+							<div class="card">
+								<div class="card-body">
+									<img src="'. base_url("assets/images/icons/search.svg") . '" class="img-fluid w-50">	
+									<h3>Has no chat yet!</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			';
 		}
 	}
 
